@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:indbytes/constants/colors/app_colors.dart';
-import 'package:indbytes/view/bottom_nav/bottom_nav.dart';
+import 'package:indbytes/wrapper/wrapper.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Timer(const Duration(seconds: 3), () {
       Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (_) => BottomNavBar()));
+          .pushReplacement(MaterialPageRoute(builder: (_) => Wrapper()));
     });
   }
 

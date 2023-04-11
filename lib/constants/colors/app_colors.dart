@@ -11,6 +11,7 @@ class AppColors {
     ],
   ));
   static const transparentColor = Colors.transparent;
+  static const greenColor = Colors.green;
   static const whiteColor = Colors.white;
   static const redColor = Color.fromRGBO(252, 21, 59, 1);
   static const blackColor = Colors.black;
