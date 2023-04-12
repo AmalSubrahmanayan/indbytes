@@ -18,7 +18,7 @@ class SignInButton extends StatelessWidget {
       ),
       onPressed: onPressed,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 120, vertical: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 120, vertical: 15),
         child: Text(
           text,
           style: AppTextStyles.textStyleButton,

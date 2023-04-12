@@ -16,9 +16,9 @@ class Wrapper extends StatelessWidget {
         builder: (context, AsyncSnapshot<User?> snapshot) {
           if (snapshot.connectionState == ConnectionState.active) {
             final User? user = snapshot.data;
-            return user == null ? SignIn() : BottomNavBar();
+            return user == null ? const SignIn() : BottomNavBar();
           } else {
-            return Scaffold(
+            return const Scaffold(
               body: Center(child: CircularProgressIndicator()),
             );
           }

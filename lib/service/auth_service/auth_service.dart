@@ -27,19 +27,21 @@ class AuthService {
     );
     return _userFromFirebase(Credential.user);
   }
+
   Future<User?> createUserWithEmailAndPassword(
     String email,
     String password,
     String name,
-    String confirmPassword, 
-    
+    String confirmPassword,
+
     // Add confirmPassword parameter
   ) async {
     if (password != confirmPassword) {
       throw Exception("Password and Confirm Password do not match");
     }
 
-    final auth.UserCredential credential = await _firebaseAuth.createUserWithEmailAndPassword(
+    final auth.UserCredential credential =
+        await _firebaseAuth.createUserWithEmailAndPassword(
       email: email,
       password: password,
     );
@@ -53,7 +55,10 @@ class AuthService {
     );
 
     // Store the user data in Firestore
-    await _firestore.collection('users').doc(credential.user!.uid).set(user.toJson());
+    await _firestore
+        .collection('users')
+        .doc(credential.user!.uid)
+        .set(user.toJson());
 
     return _userFromFirebase(credential.user);
   }
@@ -73,6 +78,3 @@ class AuthService {
     return await _firebaseAuth.signOut();
   }
 }
-  
-
-

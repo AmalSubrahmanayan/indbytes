@@ -12,4 +12,5 @@ class BottomNavBarProvider with ChangeNotifier {
     currentIndex = newIndex;
     notifyListeners();
   }
+  
 }

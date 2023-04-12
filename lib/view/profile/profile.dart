@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:indbytes/constants/colors/app_colors.dart';
 import 'package:indbytes/constants/sizedboxes/app_sizedboxes.dart';
@@ -14,6 +13,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: non_constant_identifier_names
     final AuthCredential = Provider.of<AuthService>(context);
     return Scaffold(
       appBar: AppBar(

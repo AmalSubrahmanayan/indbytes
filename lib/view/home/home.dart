@@ -3,14 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:indbytes/constants/colors/app_colors.dart';
 import 'package:indbytes/view/home/widgets/movie_container.dart';
 import 'package:indbytes/view/home/widgets/movie_title.dart';
+import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../controller/home/home_controller.dart';
+
 class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
-  final controller = PageController(viewportFraction: 0.8, keepPage: true);
+  const HomeScreen({super.key});
+  // final controller = PageController(viewportFraction: 0.8, keepPage: true);
+  // final carcontroller = CarouselController(viewportFraction: 0.8, keepPage: true);
 
   @override
   Widget build(BuildContext context) {
+    // final movieService = Provider.of<MovieService>(context, listen: false);
+    // final MyCarouselController carouselController =
+    // Provider.of<MyCarouselController>(context, listen: false);
+
     return DefaultTabController(
       length: 2,
       child: SafeArea(
@@ -20,7 +28,10 @@ class HomeScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 40),
                 child: IconButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      // await HomeService().getMovies();
+                      await MyCarouselController().getCarousals();
+                    },
                     icon: const Icon(
                       Icons.settings,
                       color: AppColors.blackColor,
@@ -55,50 +66,56 @@ class HomeScreen extends StatelessWidget {
               SingleChildScrollView(
                 child: Column(
                   children: [
-                    CarouselSlider.builder(
-                      itemCount: 6,
-                      itemBuilder: (BuildContext context, int itemIndex,
-                              int pageViewIndex) =>
-                          Stack(
-                        children: [
-                          Container(
-                            decoration: const BoxDecoration(
-                                image: DecorationImage(
-                                    image: NetworkImage(
-                                        'https://static.toiimg.com/thumb/msid-94394317,width-1280,resizemode-4/94394317.jpg'),
-                                    fit: BoxFit.cover)),
-                          ),
-                          const Positioned(
+                    Consumer<MyCarouselController>(
+                        builder: (context, values, _) {
+                      return CarouselSlider.builder(
+                        itemCount: 4,
+                        // itemCount: values.carousalList.length,
+                        itemBuilder: (BuildContext context, int itemIndex,
+                                int pageViewIndex) =>
+                            Stack(
+                          children: [
+                            Container(
+                              decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                      image: NetworkImage(
+                                          'https://static.toiimg.com/thumb/msid-94394317,width-1280,resizemode-4/94394317.jpg'),
+                                      fit: BoxFit.cover)),
+                            ),
+                            const Positioned(
                               top: 130,
                               child: Text(
-                                'Avatar:The way of water',
+                                "carousal texy",
+                                // values.carousalList[itemIndex].overview,
                                 style: TextStyle(
                                     color: AppColors.blackColor,
                                     fontSize: 17,
                                     fontWeight: FontWeight.bold),
-                              )),
-                          const Positioned(
-                            top: 150,
-                            child: AnimatedSmoothIndicator(
-                              activeIndex: 3,
-                              count: 6,
-                              effect: ExpandingDotsEffect(
-                                  radius: 9,
-                                  dotColor: AppColors.redColor,
-                                  activeDotColor: AppColors.redColor,
-                                  dotHeight: 10,
-                                  dotWidth: 10),
+                              ),
                             ),
-                          )
-                        ],
-                      ),
-                      options: CarouselOptions(
-                        aspectRatio: 2.0,
-                        viewportFraction: 1.0,
-                        autoPlay: false,
-                        enlargeCenterPage: true,
-                      ),
-                    ),
+                            const Positioned(
+                              top: 150,
+                              child: AnimatedSmoothIndicator(
+                                activeIndex: 3,
+                                count: 6,
+                                effect: ExpandingDotsEffect(
+                                    radius: 9,
+                                    dotColor: AppColors.redColor,
+                                    activeDotColor: AppColors.redColor,
+                                    dotHeight: 10,
+                                    dotWidth: 10),
+                              ),
+                            )
+                          ],
+                        ),
+                        options: CarouselOptions(
+                          aspectRatio: 2.0,
+                          viewportFraction: 1.0,
+                          autoPlay: false,
+                          enlargeCenterPage: true,
+                        ),
+                      );
+                    }),
                     const SizedBox(
                       height: 30,
                     ),
@@ -134,9 +151,6 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
-                child: Image.asset("assets/images/Logonetflix.png"),
-              )
             ],
           ),
         ),

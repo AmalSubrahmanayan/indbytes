@@ -47,8 +47,8 @@ class ScondBottomList extends StatelessWidget {
                 )
               ],
             ),
-            Spacer(),
-            Icon(
+            const Spacer(),
+            const Icon(
               Icons.chevron_right_rounded,
             ),
           ],

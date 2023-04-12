@@ -41,7 +41,7 @@ class TextFormFieldWidget extends StatelessWidget {
             prefixIcon: Icon(iconData),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(color: AppColors.greyColor),
+              borderSide: const BorderSide(color: AppColors.greyColor),
             ),
             hintText: hintText,
           ),

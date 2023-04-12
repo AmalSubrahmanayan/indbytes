@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:indbytes/constants/colors/app_colors.dart';
 import 'package:indbytes/controller/bottom_nav_bar/bottom_nav_bar_controller.dart';
+import 'package:indbytes/view/DetailPage/detailpage.dart';
 import 'package:indbytes/view/home/home.dart';
 import 'package:indbytes/view/profile/profile.dart';
-import 'package:indbytes/view/sign_in/sign_in.dart';
 import 'package:indbytes/view/sign_up/sign_up.dart';
 import 'package:provider/provider.dart';
 
@@ -11,8 +11,8 @@ class BottomNavBar extends StatelessWidget {
   BottomNavBar({super.key});
 
   final List<dynamic> body = [
-    HomeScreen(),
-    const SignIn(),
+    const HomeScreen(),
+    const DetailPage(),
     const SignUp(),
     const ProfileScreen(),
   ];
